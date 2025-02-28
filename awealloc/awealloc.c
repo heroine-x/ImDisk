@@ -343,6 +343,8 @@ IN PUNICODE_STRING RegistryPath)
     UNICODE_STRING ctl_device_name;
     UNICODE_STRING sym_link;
 
+    UNREFERENCED_PARAMETER(RegistryPath);
+
     KdBreakPoint();
 
     AWEAllocDriverObject = DriverObject;
@@ -689,6 +691,8 @@ IN PIRP Irp)
     POBJECT_CONTEXT context = io_stack->FileObject->FsContext2;
     NTSTATUS status;
 
+    UNREFERENCED_PARAMETER(DeviceObject);
+
     KdPrint2(("AWEAlloc: FileSystemControl request %#x.\n",
         io_stack->Parameters.FileSystemControl.FsControlCode));
 
@@ -790,6 +794,8 @@ NTSTATUS
 AWEAllocFlushBuffers(IN PDEVICE_OBJECT DeviceObject,
 IN PIRP Irp)
 {
+    UNREFERENCED_PARAMETER(DeviceObject);
+
     Irp->IoStatus.Information = 0;
     Irp->IoStatus.Status = STATUS_SUCCESS;
 
@@ -809,6 +815,8 @@ IN PIRP Irp)
     PUCHAR system_buffer;
     PAGE_CONTEXT current_page_context = { 0 };
     KIRQL lowest_assumed_irql = PASSIVE_LEVEL;
+
+    UNREFERENCED_PARAMETER(DeviceObject);
 
     KdPrint2(("AWEAlloc: Read/write request Offset=%#I64x Len=%#x.\n",
         io_stack->Parameters.Read.ByteOffset,
@@ -1411,6 +1419,8 @@ IN PIRP Irp)
     PIO_STACK_LOCATION io_stack = IoGetCurrentIrpStackLocation(Irp);
     POBJECT_CONTEXT context = io_stack->FileObject->FsContext2;
 
+    UNREFERENCED_PARAMETER(DeviceObject);
+
     KdPrint2(("AWEAlloc: QueryFileInformation: %u.\n",
         io_stack->Parameters.QueryFile.FileInformationClass));
 
@@ -1538,6 +1548,8 @@ IN PIRP Irp)
     POBJECT_CONTEXT context = io_stack->FileObject->FsContext2;
     KIRQL lowest_assumed_irql = PASSIVE_LEVEL;
 
+    UNREFERENCED_PARAMETER(DeviceObject);
+
     KdPrint2(("AWEAlloc: SetFileInformation: %u.\n",
         io_stack->Parameters.SetFile.FileInformationClass));
 
@@ -1638,6 +1650,8 @@ IN BOOLEAN OwnsReadLock)
     LARGE_INTEGER offset = { 0 };
     PAGE_CONTEXT current_page_context = { 0 };
     KIRQL lowest_assumed_irql = PASSIVE_LEVEL;
+
+    UNREFERENCED_PARAMETER(OwnsReadLock);
 
     PAGED_CODE();
 
@@ -1745,6 +1759,8 @@ IN PIRP Irp)
     PFILE_OBJECT file_object = IoGetCurrentIrpStackLocation(Irp)->FileObject;
     POBJECT_CONTEXT context;
 
+    UNREFERENCED_PARAMETER(DeviceObject);
+
     KdPrint(("AWEAlloc: Create.\n"));
 
     PAGED_CODE();
@@ -1833,6 +1849,8 @@ IN PIRP Irp)
 {
     PIO_STACK_LOCATION io_stack = IoGetCurrentIrpStackLocation(Irp);
     POBJECT_CONTEXT context = io_stack->FileObject->FsContext2;
+
+    UNREFERENCED_PARAMETER(DeviceObject);
 
     KdPrint(("AWEAlloc: Close.\n"));
 
