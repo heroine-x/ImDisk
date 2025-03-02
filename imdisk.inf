@@ -1,35 +1,23 @@
 [Version]
 signature = "$Windows NT$"
-Provider = "LTR Data"
-DriverVer=02/04/2023,6.0.6001.18000
+Provider = "Xanasoft"
+DriverVer=03/01/2025,3.0.0
 
 
 [SourceDisksNames]
 1 = "ImDisk Virtual Disk Driver Installation disk"
 
 
-[SourceDisksFiles.x86]
-deviodrv.sys = 1,deviodrv\i386
-awealloc.sys = 1,awealloc\i386
-imdisk.sys = 1,sys\i386
-imdsksvc.exe = 1,svc\i386
-imdisk.cpl = 1,cpl\i386
-imdisk.exe = 1,cli\i386
-imdisk.inf = 1
-imdisk.pnf = 1
-uninstall_imdisk.cmd = 1
-
-
-[SourceDisksFiles.ia64]
-deviodrv.sys = 1,deviodrv\ia64
-awealloc.sys = 1,awealloc\ia64
-imdisk.sys = 1,sys\ia64
-imdsksvc.exe = 1,svc\ia64
-imdisk.cpl = 1,cpl\ia64
-imdisk.exe = 1,cli\ia64
-imdisk.inf = 1
-imdisk.pnf = 1
-uninstall_imdisk.cmd = 1
+;[SourceDisksFiles.x86]
+;deviodrv.sys = 1,deviodrv\i386
+;awealloc.sys = 1,awealloc\i386
+;imdisk.sys = 1,sys\i386
+;imdsksvc.exe = 1,svc\i386
+;imdisk.cpl = 1,cpl\i386
+;imdisk.exe = 1,cli\i386
+;imdisk.inf = 1
+;imdisk.pnf = 1
+;uninstall_imdisk.cmd = 1
 
 
 [SourceDisksFiles.amd64]
@@ -39,18 +27,6 @@ imdisk.sys = 1,sys\amd64
 imdsksvc.exe = 1,svc\amd64
 imdisk.cpl = 1,cpl\amd64
 imdisk.exe = 1,cli\amd64
-imdisk.inf = 1
-imdisk.pnf = 1
-uninstall_imdisk.cmd = 1
-
-
-[SourceDisksFiles.arm]
-deviodrv.sys = 1,deviodrv\arm
-awealloc.sys = 1,awealloc\arm
-imdisk.sys = 1,sys\arm
-imdsksvc.exe = 1,svc\arm
-imdisk.cpl = 1,cpl\arm
-imdisk.exe = 1,cli\arm
 imdisk.inf = 1
 imdisk.pnf = 1
 uninstall_imdisk.cmd = 1
@@ -76,26 +52,15 @@ ImDiskInfFiles = 17
 ImDiskPnfFiles = 17
 
 
-[DefaultInstall.ntx86]
-CopyFiles = ImDiskSysFiles, ImDiskExeFiles, ImDiskInfFiles
-AddReg = ImDiskAddReg
-DelReg = ImDiskDelOldReg
+;[DefaultInstall.ntx86]
+;CopyFiles = ImDiskSysFiles, ImDiskExeFiles, ImDiskInfFiles
+;AddReg = ImDiskAddReg
+;DelReg = ImDiskDelOldReg
 
 
-[DefaultUninstall.ntx86]
-DelFiles = ImDiskSysFiles, ImDiskExeFiles, ImDiskInfFiles, ImDiskPnfFiles
-DelReg = ImDiskDelReg
-
-
-[DefaultInstall.ntarm]
-CopyFiles = ImDiskSysFiles, ImDiskExeFiles, ImDiskInfFiles
-AddReg = ImDiskAddReg
-DelReg = ImDiskDelOldReg
-
-
-[DefaultUninstall.ntarm]
-DelFiles = ImDiskSysFiles, ImDiskExeFiles, ImDiskInfFiles, ImDiskPnfFiles
-DelReg = ImDiskDelReg
+;[DefaultUninstall.ntx86]
+;DelFiles = ImDiskSysFiles, ImDiskExeFiles, ImDiskInfFiles, ImDiskPnfFiles
+;DelReg = ImDiskDelReg
 
 
 [DefaultInstall.ntamd64]
@@ -120,43 +85,18 @@ DelFiles = ImDiskSysFiles, ImDiskExeFiles, ImDiskExe32Files, ImDiskInfFiles, ImD
 DelReg = ImDiskDelReg
 
 
-[DefaultInstall.ntia64]
-CopyFiles = ImDiskSysFiles, ImDiskExeFiles, ImDiskExe32Files, ImDiskInfFiles
-AddReg = ImDiskAddReg
-DelReg = ImDiskDelOldReg
+;[DefaultInstall.ntx86.Services]
+;AddService = DevIoDrv, , DevIoDrv
+;AddService = AWEAlloc, , AWEAllocDrv
+;AddService = ImDisk, , ImDskDrv
+;AddService = ImDskSvc, , ImDskSvc
 
 
-[DefaultUninstall.ntia64]
-DelFiles = ImDiskSysFiles, ImDiskExeFiles, ImDiskExe32Files, ImDiskInfFiles, ImDiskPnfFiles
-DelReg = ImDiskDelReg
-
-
-[DefaultInstall.ntx86.Services]
-AddService = DevIoDrv, , DevIoDrv
-AddService = AWEAlloc, , AWEAllocDrv
-AddService = ImDisk, , ImDskDrv
-AddService = ImDskSvc, , ImDskSvc
-
-
-[DefaultUninstall.ntx86.Services]
-DelService = DevIoDrv
-DelService = AWEAlloc
-DelService = ImDisk
-DelService = ImDskSvc
-
-
-[DefaultInstall.ntarm.Services]
-AddService = DevIoDrv, , DevIoDrv
-AddService = AWEAlloc, , AWEAllocDrv
-AddService = ImDisk, , ImDskDrv
-AddService = ImDskSvc, , ImDskSvc
-
-
-[DefaultUninstall.ntarm.Services]
-DelService = DevIoDrv
-DelService = AWEAlloc
-DelService = ImDisk
-DelService = ImDskSvc
+;[DefaultUninstall.ntx86.Services]
+;DelService = DevIoDrv
+;DelService = AWEAlloc
+;DelService = ImDisk
+;DelService = ImDskSvc
 
 
 [DefaultInstall.ntamd64.Services]
@@ -181,20 +121,6 @@ AddService = ImDskSvc, , ImDskSvc
 
 
 [DefaultUninstall.ntarm64.Services]
-DelService = DevIoDrv
-DelService = AWEAlloc
-DelService = ImDisk
-DelService = ImDskSvc
-
-
-[DefaultInstall.ntia64.Services]
-AddService = DevIoDrv, , DevIoDrv
-AddService = AWEAlloc, , AWEAllocDrv
-AddService = ImDisk, , ImDskDrv
-AddService = ImDskSvc, , ImDskSvc
-
-
-[DefaultUninstall.ntia64.Services]
 DelService = DevIoDrv
 DelService = AWEAlloc
 DelService = ImDisk
