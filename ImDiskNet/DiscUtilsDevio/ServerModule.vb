@@ -7,6 +7,9 @@ Imports DiscUtils.Setup
 Imports LTR.IO.ImDisk.Devio.Server.Providers
 Imports LTR.IO.ImDisk.Devio.Server.Services
 
+#Disable Warning IDE0079 ' Remove unnecessary suppression
+#Disable Warning CA1846 ' Prefer 'AsSpan' over 'Substring'
+
 Public Module ServerModule
 
     Private ReadOnly asms As New List(Of Assembly) From {
@@ -148,10 +151,10 @@ Formats currently supported: {String.Join(", ", VirtualDiskManager.SupportedDisk
             If device.Geometry Is Nothing Then
                 Console.WriteLine("Image sector size is unknown")
             Else
-                Console.WriteLine($"Image sector size is {device.Geometry.BytesPerSector} bytes")
+                Console.WriteLine($"Image sector size is {device.Geometry.Value.BytesPerSector} bytes")
             End If
 
-            Dim disk_stream As Stream
+            Dim disk_stream As Streams.SparseStream
 
             If partition_number.HasValue = False Then
                 If partition_table IsNot Nothing Then
@@ -232,9 +235,11 @@ Formats currently supported: {String.Join(", ", VirtualDiskManager.SupportedDisk
                                 Console.Error.WriteLine("No drive letter available")
                                 Return
                             End If
+
                             mount_point = {drive_letter, ":"c}
                             Console.WriteLine($"Selected {mount_point} as drive letter mount point")
                         End If
+
                         Console.WriteLine("Opening image file and mounting as virtual disk...")
                         service.StartServiceThreadAndMountImDisk(ImDiskFlags.Auto, mount_point)
                         Console.WriteLine("Virtual disk created. Press Ctrl+C to remove virtual disk and exit.")
